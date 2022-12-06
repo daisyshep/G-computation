@@ -1,2 +1,2 @@
 # G-computation
-Developed R code for implementing g-computation
+R code for implementing g-computation
