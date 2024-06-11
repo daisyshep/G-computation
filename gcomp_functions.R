@@ -4,7 +4,7 @@
 ## Affiliations: The Murdoch Children's Research Institute & The University of Melbourne
 
 ## Code originally developed for ViCBiostat summer school (Feb 2020)
-## Last updated: December 2022
+## Last updated: June 2024
 ##########################################################################
 
 ## Function: gcompstat(data,ind,out,exp,formula)
@@ -16,8 +16,8 @@
 ##      formula = to pass to fitted model
 ##
 ## Notes: Function works for continuous or binary outcome
-##        Continuous outcome - calculates causal risk difference
-##        Binary outcome - calculates causal risk ratio
+##        Continuous outcome - ACE is the difference in expected outcomes
+##        Binary outcome - ACE is the causal risk ratio
 
 gcompstat <- function(data,ind,out,exp,formula){
   dat <- data[ind,] 
@@ -53,8 +53,8 @@ gcompstat <- function(data,ind,out,exp,formula){
       ## Calculating average causal effect (ACE)
       EYA0 <- mean(onesample[which(onesample$index==0),]$predicted_meanY) 
       EYA1 <- mean(onesample[which(onesample$index==1),]$predicted_meanY) 
-      ACE_risk_diff <- EYA1 - EYA0
-      return(ACE_risk_diff)
+      ACE_diff <- EYA1 - EYA0
+      return(ACE_diff)
     }
     else{
       print("Error: Outcome must be continuous or binary")
