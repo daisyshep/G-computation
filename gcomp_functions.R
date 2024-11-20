@@ -51,8 +51,8 @@ gcompstat <- function(data,ind,out,exp,formula){
       onesample$predicted_meanY <- predict(fit, onesample)
       
       ## Calculating average causal effect (ACE)
-      EYA0 <- mean(onesample[which(onesample$index==0),]$predicted_meanY) 
-      EYA1 <- mean(onesample[which(onesample$index==1),]$predicted_meanY) 
+      EYA0 <- mean(onesample[which(onesample$index==0),]$predicted_meanY, na.rm=T) 
+      EYA1 <- mean(onesample[which(onesample$index==1),]$predicted_meanY, na.rm=T) 
       ACE_diff <- EYA1 - EYA0
       return(ACE_diff)
     }
@@ -71,8 +71,8 @@ gcompstat <- function(data,ind,out,exp,formula){
     onesample$predicted_meanY <- predict(fit, onesample, type="response")
     
     ## Calculating average causal effect (ACE)
-    EYA0 <- mean(onesample[which(onesample$index==0),]$predicted_meanY) 
-    EYA1 <- mean(onesample[which(onesample$index==1),]$predicted_meanY) 
+    EYA0 <- mean(onesample[which(onesample$index==0),]$predicted_meanY, na.rm=T) 
+    EYA1 <- mean(onesample[which(onesample$index==1),]$predicted_meanY, na.rm=T) 
     ACE_risk_ratio <- EYA1/EYA0
     return(ACE_risk_ratio)
   }
